@@ -1,0 +1,41 @@
+1
+House
+This is the house.  It's a nice home, with wood furniture, and small pictures of a family.
+--
+4:Basement
+2:Garden
+----
+2
+Garden
+Yellow flowers grow in neat rows
+--
+3:River
+1:House
+----
+3
+River
+A wide expanse of water gently flows beneath weeping willows
+{key}
+--
+2:Garden
+----
+4
+Basement
+A dank basement is choked with dust and cobwebs
+--
+1:House
+5:Crypt{key}
+----
+5
+Crypt
+Rows of skeletons lie in cramped rows, grinning in the dark.
+--
+4:Basement
+6:Cave
+----
+6
+Cave
+Stalagtites glow in the fungal light, and bats flit through the narrow passageways
+--
+2:Garden
+5:Crypt

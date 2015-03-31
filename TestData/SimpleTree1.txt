@@ -1,0 +1,57 @@
+1
+Start
+Hey, how's it going? 
+--
+2:I'm doing well
+3:What do you care?
+7:Goodbye
+----
+2
+Good
+What do you want to know about?
+--
+4:The Town
+5:The Dungeon
+6:The Wilderness
+7:Goodbye
+8:What is your secret?{secret}
+----
+3
+WhoCares
+Well you can just be that way.  I don't want to talk to you.
+{secret}
+--
+2:Wait, I'm sorry.  I'm doing well actually.
+7:Goodbye
+----
+4
+Town
+Our town is called BurgVille. I've lived here 10 years, and it keeps getting better.
+--
+2:What else?
+7:Goodbye
+----
+5
+Dungeon
+Oooh, the dungeon is a scary place.  I'd stay away from there. I hear there are walking skeletons, come back from the dead!
+--
+2:What else?
+7:Goodbye.
+----
+6
+wilderness
+The wilderness is a beautiful but deadly place. You can go there if you are brave, but be sure to bring food, water, and some kind of weapon!
+--
+2:What else?
+7:Goodbye
+----
+7
+Goodbye
+Ok, see you around!
+--
+----
+8
+Secret
+You found my secret! how could you do that to me?!  I will get you!
+--
+----
