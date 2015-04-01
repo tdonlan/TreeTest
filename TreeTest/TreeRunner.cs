@@ -25,8 +25,16 @@ namespace TreeTest
             {
                 var currentNode = tree.getNode(tree.currentIndex);
                 Console.WriteLine(currentNode.ToString());
-                var selected = displayMenuGetInt(currentNode.getBranchListDisplay(tree));
-                tree.SelectNode(currentNode.getBranchIndex(selected));
+                var menuList = currentNode.getBranchListDisplay(tree);
+                if (menuList.Count > 0)
+                {
+                    var selected = displayMenuGetInt(menuList);
+                    tree.SelectNode(currentNode.getBranchIndex(selected));
+                }
+                else
+                {
+                    running = false;
+                }
             }
         }
 

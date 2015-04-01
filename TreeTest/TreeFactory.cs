@@ -8,17 +8,7 @@ namespace TreeTest
 {
     public class TreeFactory
     {
-        public static Tree getTree1(GlobalFlags globalFlags)
-        {
-            Tree t1 = new Tree(globalFlags);
-
-            t1.treeNodeDictionary.Add(1, new TreeNode(1, "Start", "This is the Starting Node! Everything Starts Here!", getTreeBranchList(new List<string>() {"2:second" }), null));
-            t1.treeNodeDictionary.Add(2, new TreeNode(2, "Second", "Second is the best.", getTreeBranchList(new List<string>() { "3:last","1:go back to the start:restart"}),null ));
-            t1.treeNodeDictionary.Add(3, new TreeNode(3, "Third", "This is the one with the ....", getTreeBranchList(new List<string>() { "2:go back","1:restart:restart"}), getFlagSetList(new List<string>(){"restart"})));
-            t1.currentIndex = 1;
-
-            return t1;
-        }
+      
 
         //<num>:<description>:<condition flag>
         private static List<TreeBranch> getTreeBranchList(List<string> delimStrArray)

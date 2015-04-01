@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTreeParser.cs" />
     <Compile Include="TreeFactory.cs" />
-    <Compile Include="TreeFileParser.cs" />
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeRunner.cs" />
+    <Compile Include="TreeStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

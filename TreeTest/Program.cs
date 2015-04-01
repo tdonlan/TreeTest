@@ -13,7 +13,7 @@ namespace TreeTest
 
             GlobalFlags gf = new GlobalFlags();
 
-            Tree t = SimpleTreeParser.getTreeFromFile(@"..\..\..\TestData\SimpleTree2.txt", gf);
+            Tree t = SimpleTreeParser.getTreeFromFile(@"..\..\..\TestData\SimpleTree2.txt",TreeType.Dialog, gf);
 
             //Tree t = TreeFactory.getTree1(gf);
 

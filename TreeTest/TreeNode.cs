@@ -7,9 +7,33 @@ using System.Threading.Tasks;
 namespace TreeTest
 {
 
+    public enum TreeType
+    {
+        World,
+        Zone,
+        Dialog,
+        Quest,
+
+    }
+
+    public enum ZoneNodeType
+    {
+        Battle,
+        Dialog,
+        Store,
+        Item,
+        Info,
+        Puzzle
+
+    }
+
     public class Tree
     {
+        public string treeName { get; set; }
+        public long treeIndex { get; set; }
         public long currentIndex { get; set; }
+        public TreeType treeType { get; set; }
+
         public Dictionary<long, TreeNode> treeNodeDictionary { get; set; }
 
         public GlobalFlags globalFlags;
@@ -87,17 +111,45 @@ namespace TreeTest
         }
     }
 
+    public class TreeNodeContent
+    {
+       
+    }
+
+    public class WorldNodeContent : TreeNodeContent
+    {
+        public string zoneName { get; set; }
+    }
+
+    public class ZoneNodeContent : TreeNodeContent
+    {
+        public ZoneNodeType nodeType { get; set; }
+        public string nodeName { get; set; }
+    }
+
+    public class DialogNodeContent : TreeNodeContent
+    {
+        public string speaker { get; set; }
+        public string text { get; set; }
+
+    }
+
+    public class QuestNodeContent : TreeNodeContent
+    {
+        public string content { get; set; }
+    }
+
     public class TreeNode
     {
         public long index { get; set; }
         public string name { get; set; }
-        public string content { get; set; }
+        public TreeNodeContent content { get; set; }
 
         public List<TreeBranch> branchList { get; set; }
 
         public List<TreeNodeFlagSet> flagSetList { get; set; }
 
-        public TreeNode(long index, string name, string content, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList)
+        public TreeNode(long index, string name, TreeNodeContent content, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList)
         {
             this.index = index;
             this.name = name;
@@ -106,7 +158,6 @@ namespace TreeTest
             this.flagSetList = flagSetList;
         }
 
-        
         public void SelectNode(Tree t)
         {
             if (flagSetList != null)
