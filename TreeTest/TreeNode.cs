@@ -23,7 +23,8 @@ namespace TreeTest
         Store,
         Item,
         Info,
-        Puzzle
+        Puzzle,
+        Link,
 
     }
 
@@ -38,11 +39,12 @@ namespace TreeTest
 
         public GlobalFlags globalFlags;
 
-        public Tree(GlobalFlags globalFlags)
+        public Tree(GlobalFlags globalFlags, TreeType treeType)
         {
             currentIndex = 0;
             treeNodeDictionary = new Dictionary<long, TreeNode>();
             this.globalFlags = globalFlags;
+            this.treeType = treeType;
         }
 
         public TreeNode getNode(long index)
@@ -97,7 +99,6 @@ namespace TreeTest
             this.conditionList = new List<TreeBranchCondition>();
         }
             
-
         public TreeBranch(string description, long linkIndex, List<TreeBranchCondition> conditionList)
         {
             this.description = description;
@@ -118,6 +119,7 @@ namespace TreeTest
 
     public class WorldNodeContent : TreeNodeContent
     {
+        public long linkIndex { get; set; }
         public string zoneName { get; set; }
     }
 
@@ -125,12 +127,14 @@ namespace TreeTest
     {
         public ZoneNodeType nodeType { get; set; }
         public string nodeName { get; set; }
+        public long linkIndex { get; set; }
     }
 
     public class DialogNodeContent : TreeNodeContent
     {
         public string speaker { get; set; }
         public string text { get; set; }
+        public long linkIndex { get; set; }
 
     }
 

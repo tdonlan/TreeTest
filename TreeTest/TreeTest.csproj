@@ -54,6 +54,7 @@
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeRunner.cs" />
     <Compile Include="TreeStore.cs" />
+    <Compile Include="TreeStoreRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

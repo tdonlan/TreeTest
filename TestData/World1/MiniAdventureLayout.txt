@@ -1,0 +1,40 @@
+Mini Adventure
+
+World
+	Town
+	Forest
+	Desert
+	Evil Castle
+
+Zones
+Town
+	Town Square - link
+	Zoe - town greeter - dialog
+	Alley - Rats - battle
+	Blacksmith - shop
+	
+Forest
+	Clearing - link
+	Ranger - Dialog
+	Wolf Den - wolves - battles
+	Cave - link (unlock desert)
+	
+Desert
+	Cave - link
+	Hermit - dialog
+	buried treasure - item
+	sandstorm - mummy - battle
+	Evil castle - link
+	
+Evil Castle
+	Drawbridge - link
+	Guard - battle
+	Big Boss - dialog
+	Chest - item
+	Princess - Dialog
+	
+	
+	
+	
+	
+

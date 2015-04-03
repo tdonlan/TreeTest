@@ -12,7 +12,7 @@ namespace TreeTest
         public static Tree getTreeFromFile(string path,TreeType treeType,  GlobalFlags gf)
         {
             
-            Tree t = new Tree(gf);
+            Tree t = new Tree(gf, treeType);
 
             var treeNodeList = getTreeNodeListFromFile(path,treeType);
             t.treeNodeDictionary = TreeFactory.getTreeNodeDictionaryFromList(treeNodeList);
@@ -67,11 +67,11 @@ namespace TreeTest
             switch(treeType)
             {
                 case TreeType.World:
-                    return new WorldNodeContent() {zoneName=contentStr };
+                    return new WorldNodeContent() {linkIndex=Int64.Parse(contentList[0]), zoneName=contentList[1] };
                 case TreeType.Zone:
-                    return new ZoneNodeContent() { nodeName = contentList[0], nodeType = getZoneNodeTypeFromStr(contentList[1]) };
+                    return new ZoneNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeName = contentList[1], nodeType = getZoneNodeTypeFromStr(contentList[1]) };
                 case TreeType.Dialog:
-                    return new DialogNodeContent() {speaker=contentList[0],text=contentList[1] };
+                    return new DialogNodeContent() {linkIndex = Int64.Parse(contentList[0]), speaker=contentList[1],text=contentList[2] };
                 case TreeType.Quest:
                     return new QuestNodeContent() {content=contentStr };
                 default:

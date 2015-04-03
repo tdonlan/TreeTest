@@ -1,0 +1,31 @@
+1
+Town Square
+0;Town Square;Link
+--
+2:Zoe
+3:Alley
+4:Blacksmith
+----
+2
+Zoe
+2;Zoe;Dialog
+--
+1:Town Square
+3:Alley
+4:Blacksmith
+----
+3
+Alley
+99;Alley;Battle
+--
+1:Town Square
+2:Zoe
+4:Blacksmith
+----
+4
+Blacksmith
+99;Blacksmith;Store
+--
+1:Town Square
+2:Zoe
+3:Alley
