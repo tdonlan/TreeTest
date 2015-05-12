@@ -24,6 +24,14 @@ namespace TreeTest
         public GlobalFlags globalFlags {get;set;}
         public string treeManifestFile { get; set; }
         public string path { get; set; }
+
+        public TreeStore(GlobalFlags globalFlags, List<Tree> treeList)
+        {
+            this.globalFlags = globalFlags;
+            this.treeDictionary = new Dictionary<long, Tree>();
+            LoadTreeDictionary(treeList);
+
+        }
         
         public TreeStore(GlobalFlags globalFlags,string path, string treeManifestFile)
         {
@@ -33,6 +41,14 @@ namespace TreeTest
             this.path = path;
 
             LoadTreeStoreFromManifest();
+        }
+
+        private void LoadTreeDictionary(List<Tree> treeList)
+        {
+            foreach (var tree in treeList)
+            {
+                treeDictionary.Add(tree.treeIndex, tree);
+            }
         }
 
         private string fullPath(string fileName)

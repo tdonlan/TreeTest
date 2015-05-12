@@ -77,5 +77,11 @@ namespace TreeTest
 
             return treeNodeDict;
         }
+
+        public static IDictionary<long, TreeNode> getSampleTreeNodeDictionary()
+        {
+            List<string> nodeList = new List<string>() { };
+            return null;
+        }
     }
 }

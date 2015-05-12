@@ -12,7 +12,7 @@ namespace TreeTest
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Users\tdonlan\Documents\Personal\Dev\TreeTest\TreeTest\TestData\World1";
+            string path = @"C:\GameDev\Games\UnityRPG\TreeTest\TreeTest\TestData\World1";
             /*
             List<TreeManifestItem> treeManifest = new List<TreeManifestItem>();
             treeManifest.Add(new TreeManifestItem() {treeIndex=0,treeName="World",treePath="World1.txt",treeType=TreeType.World });
