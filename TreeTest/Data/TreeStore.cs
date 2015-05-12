@@ -25,6 +25,13 @@ namespace TreeTest
         public string treeManifestFile { get; set; }
         public string path { get; set; }
 
+        public TreeStore()
+        {
+            this.globalFlags = new GlobalFlags();
+            this.treeDictionary = new Dictionary<long, Tree>();
+        }
+
+
         public TreeStore(GlobalFlags globalFlags, List<Tree> treeList)
         {
             this.globalFlags = globalFlags;

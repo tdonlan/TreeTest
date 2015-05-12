@@ -7,27 +7,6 @@ using System.Threading.Tasks;
 namespace TreeTest
 {
 
-    public enum TreeType
-    {
-        World,
-        Zone,
-        Dialog,
-        Quest,
-
-    }
-
-    public enum ZoneNodeType
-    {
-        Battle,
-        Dialog,
-        Store,
-        Item,
-        Info,
-        Puzzle,
-        Link,
-
-    }
-
     public class Tree
     {
         public string treeName { get; set; }
