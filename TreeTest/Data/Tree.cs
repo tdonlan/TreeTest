@@ -63,7 +63,6 @@ namespace TreeTest
         public string flagName { get; set; }
         public string value { get; set; }
         public FlagType flagType { get; set; }
-
     }
 
 

@@ -12,22 +12,34 @@ namespace TreeTest
     {
         static void Main(string[] args)
         {
+            TreeStore ts = loadTreeStoreJSON();
+            TreeStore ts2 = loadTreeStoreSimple();
+            runTreeStore(ts2);
+        }
+
+        private static TreeStore loadTreeStoreSimple()
+        {
             string path = @"C:\GameDev\Games\UnityRPG\TreeTest\TreeTest\TestData\World1";
-            /*
-            List<TreeManifestItem> treeManifest = new List<TreeManifestItem>();
-            treeManifest.Add(new TreeManifestItem() {treeIndex=0,treeName="World",treePath="World1.txt",treeType=TreeType.World });
-            treeManifest.Add(new TreeManifestItem() { treeIndex = 1, treeName = "ZoneTown", treePath = "ZoneTown.txt", treeType = TreeType.Zone });
-            treeManifest.Add(new TreeManifestItem() { treeIndex = 2, treeName = "DialogZoe", treePath = "DialogZoe.txt", treeType = TreeType.Dialog });
+             GlobalFlags gf = new GlobalFlags();
+            return new TreeStore(gf, path, "WorldManifest.txt");
+        }
 
-            string jsonManifest =  JsonConvert.SerializeObject(treeManifest);
-            */
-
+        private static TreeStore loadTreeStoreJSON()
+        {
+            string path = @"C:\GameDev\Games\UnityRPG\TreeTest\TreeTest\TestData\WorldJSON";
             GlobalFlags gf = new GlobalFlags();
+            return TreeStoreLoader.loadTreeStoreFromManifest(path + "/manifest.json");
+        }
 
-            TreeStore ts = new TreeStore(gf, path,"WorldManifest.txt");
-
+        private static void runTreeStore(TreeStore ts)
+        {
             TreeStoreRunner tsRunner = new TreeStoreRunner(ts);
-            
+        }
+
+        private static void exportTreeStore(TreeStore ts)
+        {
+            string exportPath = @"C:\GameDev\Games\UnityRPG\TreeTest\TreeTest\TestData\WorldJSON";
+            TreeStoreExporter.exportTreeStore(ts, exportPath);
         }
     }
 }
