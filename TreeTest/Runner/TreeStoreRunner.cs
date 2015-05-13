@@ -63,7 +63,7 @@ namespace TreeTest
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
-            WorldNodeContent content = (WorldNodeContent)currentNode.content;
+            WorldNodeContent content = ((WorldTreeNode)currentNode).content;
           
             menuList = addMenuItem(menuList,content.zoneName);
 
@@ -92,7 +92,7 @@ namespace TreeTest
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
-            DialogNodeContent content = (DialogNodeContent)currentNode.content;
+            DialogNodeContent content = ((DialogTreeNode)currentNode).content;
             menuList = addMenuItem(menuList, "Leave Conversation");
 
             if (menuList.Count > 0)
@@ -120,7 +120,7 @@ namespace TreeTest
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
-            ZoneNodeContent content = (ZoneNodeContent)currentNode.content;
+            ZoneNodeContent content = ((ZoneTreeNode)currentNode).content;
             menuList = addMenuItem(menuList, content.nodeName);
 
             if (menuList.Count > 0)

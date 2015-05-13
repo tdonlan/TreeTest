@@ -52,12 +52,41 @@ namespace TreeTest
         private static TreeNode getTreeNodeFromDataStr(string nodeDataStr, TreeType treeType)
         {
             var dataList = ParseHelper.getSplitList(nodeDataStr, Environment.NewLine);
-            TreeNode node = new TreeNode(Int64.Parse(dataList[0]), dataList[1], getTreeNodeContentFromStr(dataList[2],treeType), null, null);
-            
-            if(dataList.Count > 3)
+
+            TreeNode node = null;
+            switch(treeType)
             {
-                node.flagSetList = getFlagSetFromDataStr(dataList[3]);
+                case TreeType.World:
+                    node = new WorldTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (WorldNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                    if (dataList.Count > 3)
+                    {
+                        node.flagSetList = getFlagSetFromDataStr(dataList[3]);
+                    }
+                    break; 
+                case TreeType.Zone:
+                    node = new ZoneTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (ZoneNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                    if (dataList.Count > 3)
+                    {
+                        node.flagSetList = getFlagSetFromDataStr(dataList[3]);
+                    }
+                    break; 
+                case TreeType.Dialog:
+                    node = new DialogTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (DialogNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                    if (dataList.Count > 3)
+                    {
+                        node.flagSetList = getFlagSetFromDataStr(dataList[3]);
+                    }
+                    break;
+                case TreeType.Quest:
+                    node = new QuestTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (QuestNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                    if (dataList.Count > 3)
+                    {
+                        node.flagSetList = getFlagSetFromDataStr(dataList[3]);
+                    }
+                    break;
+                default: break;
             }
+         
             return node;
         }
 

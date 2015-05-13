@@ -22,8 +22,8 @@ namespace TreeTest
                 var tree = ts.treeDictionary[key];
                 string exportPath = getTreeExportPath(key, tree, path);
                 
-                //string treeJSON = JsonConvert.SerializeObject(tree);
-                string treeJSON = SimpleJson.SimpleJson.SerializeObject(tree);
+                string treeJSON = JsonConvert.SerializeObject(tree);
+                //string treeJSON = SimpleJson.SimpleJson.SerializeObject(tree, new TreeSerializationStrategy());
 
                 File.WriteAllText(exportPath, treeJSON, Encoding.Default);
 

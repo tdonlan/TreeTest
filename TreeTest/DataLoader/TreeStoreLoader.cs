@@ -33,7 +33,8 @@ namespace TreeTest
         public static Tree loadTreeFromPath(string treePath)
         {
             string treeStr = File.ReadAllText(treePath);
-            var treeJSON = JsonConvert.DeserializeObject<Tree>(treeStr);
+            var treeJSON = SimpleJson.SimpleJson.DeserializeObject<Tree>(treeStr, new TreeSerializationStrategy());
+            //var treeJSON = JsonConvert.DeserializeObject<Tree>(treeStr,new TreeSerializationStrategy());
 
             return treeJSON;
 

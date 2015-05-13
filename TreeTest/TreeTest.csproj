@@ -44,10 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLoader\TreeSerializationStrategy.cs" />
     <Compile Include="DataLoader\TreeStoreExporter.cs" />
     <Compile Include="DataLoader\TreeStoreLoader.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\GlobalFlags.cs" />
+    <Compile Include="Data\TreeNode.cs" />
     <Compile Include="Parser\JSONHelper.cs" />
     <Compile Include="Parser\ParseHelper.cs" />
     <Compile Include="Parser\SimpleJSON.cs" />
