@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Dynamic;
+using System.IO;
 
 namespace TreeTest
 {
     public class ParseHelper
     {
+        public static string getFullPath(string manifest, string relativePath)
+        {
+            
+            return Path.GetDirectoryName(manifest) + "/" + relativePath;
+        }
         //returns a string list from a string delim split
        public static List<string> getSplitList(string str, string delim)
         {

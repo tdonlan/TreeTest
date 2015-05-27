@@ -35,6 +35,12 @@ namespace TreeTest
  
         }
 
+        public static void exportTree(Tree t, string path)
+        {
+            string treeJSON = SimpleJson.SimpleJson.SerializeObject(t);
+            File.WriteAllText(path, treeJSON);
+        }
+
         public static string getTreeExportPath(long index, Tree t, string path)
         {
             return path + "/" + t.treeType + index + ".json";

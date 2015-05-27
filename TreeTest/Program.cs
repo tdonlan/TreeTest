@@ -12,86 +12,105 @@ namespace TreeTest
     class Program
     {
         static void Main(string[] args)
-        {
+        {          
+            if(args.Length > 0)
+            {
+                switch (args[0].ToUpper())
+                {
+                    case "-HELP":
+                    case "-?":
+                        help();
+                        break;
+                    case "-R":
+                        if (args.Length > 1) { run(args[1]); }
 
-            //testWriteSimpleJSON();
+                        else { Console.WriteLine("Missing arguments <manifest>."); }
+                        break;
+                    case "-C":
+                        if (args.Length > 2) { convert(args[1], args[2]); }
+                        else { Console.WriteLine("Missing arguments <inputdirectory> <outputdirectory>."); }
 
-            //testSimpleJSON();
-            //testJSONNet();
-
-            //TreeStore ts = loadTreeStoreJSON();
-            TreeStore ts2 = loadTreeStoreSimple();
-
-            //readWriteSimpleJSON(ts2.treeDictionary[0]);
-
-            exportTreeStore(ts2);
-            runTreeStore(ts2);
+                        break;
+                    case "-CF":
+                        if (args.Length > 3) { convertFile(args[1], args[2], args[3]); }
+                        else { Console.WriteLine("Missing arguments <type> <inputfile> <outputfile>."); }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command specified.");
+                        break;
+                }
+            }
         }
 
-        private static TreeStore loadTreeStoreSimple()
+        public static void help()
         {
-            string path = @"..\..\..\TestData\World1";
-             GlobalFlags gf = new GlobalFlags();
-            return new TreeStore(gf, path, "WorldManifest.txt");
+            string outStr = "TreeTest Utility\n";
+            outStr += "2015 - tdonlan\n";
+            outStr += "Used to run TreeStore files, and convert from simple data files to JSON format.\n";
+            outStr += "TreeTest.exe [-help|-?|-r|-c|-cf] <input> <output>\n";
+            outStr += "-help: Display this message.\n";
+            outStr += "-?: Display this message.\n";
+            outStr += "-r: Run.   <manifest file>.\n";
+            outStr += "-c: Convert from Simple to JSON format. <input directory> <output directory>.\n ";
+            outStr += "-cf: Convert File from Simple to JSON format. <type> <input directory> <output director>.\n";
+            Console.Write(outStr);
         }
 
-        private static TreeStore loadTreeStoreJSON()
+        
+
+        public static void run(string manifest)
         {
-            string path = @"..\..\..\TestData\WorldJSON";
+            Console.WriteLine("Running " + manifest);
+
             GlobalFlags gf = new GlobalFlags();
-            return TreeStoreLoader.loadTreeStoreFromManifest(path + "/manifest.json");
+            TreeStore ts = TreeStoreLoader.loadTreeStoreFromManifest(manifest);
+
+            TreeStoreRunner tr = new TreeStoreRunner(ts);
+         
         }
 
-        private static void runTreeStore(TreeStore ts)
+        public static void convert(string inputDirectory, string outputDirectory)
         {
-            TreeStoreRunner tsRunner = new TreeStoreRunner(ts);
+            Console.WriteLine("Converting from " + inputDirectory + " to " + outputDirectory);
+
+            string manifest = inputDirectory + "/manifest.json";
+            TreeStore ts = SimpleTreeParser.LoadTreeStoreFromManifest(manifest);
+            TreeStoreExporter.exportTreeStore(ts, outputDirectory);
         }
 
-        private static void exportTreeStore(TreeStore ts)
+        public static void convertFile(string type, string inputFile, string outputFile)
         {
-            string exportPath = @"..\..\..\TestData\WorldJSON";
-            TreeStoreExporter.exportTreeStore(ts, exportPath);
+            Console.WriteLine("Converting tree of type " + type + " from " + inputFile + " to " + outputFile);
+
+            GlobalFlags gf = new GlobalFlags();
+
+            TreeType treeType = TreeType.World;
+
+            switch(type.ToUpper())
+            {
+                case "DIALOG":
+                    treeType = TreeType.Dialog;
+                    break;
+                case "WORLD":
+                    treeType = TreeType.World;
+                    break;
+                case "ZONE":
+                    treeType = TreeType.Zone;
+                    break;
+                case "QUEST":
+                    treeType = TreeType.Quest;
+                    break;
+                default:
+                    Console.WriteLine("Invalid tree type specified.");
+                    return;
+
+            }
+
+            Tree t = SimpleTreeParser.getTreeFromFile(inputFile, treeType, gf);
+
+            TreeStoreExporter.exportTree(t, outputFile);
+
         }
 
-
-        private static void readWriteSimpleJSON(Tree t)
-        {
-              string simpleJSON= SimpleJson.SimpleJson.SerializeObject(t);
-
-              string netJSON = JsonConvert.SerializeObject(t);
-
-              Tree t2 = SimpleJson.SimpleJson.DeserializeObject<Tree>(netJSON);
-
-        }
-
-        private static void testWriteSimpleJSON()
-        {
-            WorldNodeContent nodeContent = new WorldNodeContent();
-            nodeContent.linkIndex = 1;
-            nodeContent.zoneName = "Zone1";
-
-           string simpleJSON= SimpleJson.SimpleJson.SerializeObject(nodeContent);
-
-           WorldNodeContent nodeContent2 = SimpleJson.SimpleJson.DeserializeObject<WorldNodeContent>(simpleJSON);
-
-           
-        }
-
-        private static void testSimpleJSON()
-        {
-            string path = @"..\..\..\TestData\WorldJSON\Dialog2.json";
-            File.ReadAllText(path);
-
-            Tree t = SimpleJson.SimpleJson.DeserializeObject<Tree>(File.ReadAllText(path));
-        }
-
-        private static void testJSONNet()
-        {
-            string path = @"..\..\..\TestData\WorldJSON\Dialog2.json";
-            File.ReadAllText(path);
-
-            Tree t = JsonConvert.DeserializeObject<Tree>(File.ReadAllText(path));
-            //Tree t = SimpleJson.SimpleJson.DeserializeObject<Tree>(File.ReadAllText(path));
-        }
     }
 }

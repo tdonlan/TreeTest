@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TreeTest
 {
+  
 
     public class Tree
     {
@@ -14,7 +15,7 @@ namespace TreeTest
         public long currentIndex { get; set; }
         public TreeType treeType { get; set; }
 
-        public Dictionary<long, TreeNode> treeNodeDictionary { get; set; }
+        public virtual Dictionary<long, TreeNode> treeNodeDictionary { get; set; }
 
         public GlobalFlags globalFlags;
 

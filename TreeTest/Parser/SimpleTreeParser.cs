@@ -4,11 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace TreeTest
 {
     public class SimpleTreeParser
     {
+
+        public static TreeStore LoadTreeStoreFromManifest(string manifest)
+        {
+            TreeStore ts = new TreeStore();
+
+            GlobalFlags gf = new GlobalFlags();
+            //load the manifest
+            string manifestStr = File.ReadAllText(manifest);
+            //var manifestJSON = SimpleJson.SimpleJson.DeserializeObject<List<TreeManifestItem>>(manifestStr);
+            var manifestJSON = JsonConvert.DeserializeObject<List<TreeManifestItem>>(manifestStr);
+
+            foreach (var treeItem in manifestJSON)
+            {
+                string path = ParseHelper.getFullPath(manifest, treeItem.treePath);
+                Tree tempTree = SimpleTreeParser.getTreeFromFile(path, treeItem.treeType, gf);
+                ts.treeDictionary.Add(treeItem.treeIndex, tempTree);
+            }
+
+            return ts;
+        }
+
         public static Tree getTreeFromFile(string path,TreeType treeType,  GlobalFlags gf)
         {
             

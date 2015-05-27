@@ -95,10 +95,7 @@ namespace TreeTest
         public override string ToString()
         {
             string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
-
-
             return retval;
-
         }
     }
 
