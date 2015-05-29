@@ -20,33 +20,14 @@ namespace TreeTest
 
     public class TreeStore
     {
-        public Dictionary<long, Tree> treeDictionary { get; set; }
+        public Dictionary<long, ITree> treeDictionary { get; set; }
         public GlobalFlags globalFlags {get;set;}
 
 
         public TreeStore()
         {
             this.globalFlags = new GlobalFlags();
-            this.treeDictionary = new Dictionary<long, Tree>();
+            this.treeDictionary = new Dictionary<long, ITree>();
         }
-
-
-        public TreeStore(GlobalFlags globalFlags, List<Tree> treeList)
-        {
-            this.globalFlags = globalFlags;
-            this.treeDictionary = new Dictionary<long, Tree>();
-            LoadTreeDictionary(treeList);
-
-        }
-     
-
-        private void LoadTreeDictionary(List<Tree> treeList)
-        {
-            foreach (var tree in treeList)
-            {
-                treeDictionary.Add(tree.treeIndex, tree);
-            }
-        }
-
     }
 }

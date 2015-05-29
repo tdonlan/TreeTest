@@ -8,35 +8,6 @@ namespace TreeTest
 {
     public class TreeRunner
     {
-        public Tree tree { get; set; }
-        private bool running;
-
-        public TreeRunner(Tree t)
-        {
-            this.tree = t;
-            this.running = true;
-
-            RunTree();
-        }
-
-        public void RunTree()
-        {
-            while(running)
-            {
-                var currentNode = tree.getNode(tree.currentIndex);
-                Console.WriteLine(currentNode.ToString());
-                var menuList = currentNode.getBranchListDisplay(tree);
-                if (menuList.Count > 0)
-                {
-                    var selected = displayMenuGetInt(menuList);
-                    tree.SelectNode(currentNode.getBranchIndex(selected));
-                }
-                else
-                {
-                    running = false;
-                }
-            }
-        }
 
         public static int displayMenuGetInt(List<string> menu)
         {

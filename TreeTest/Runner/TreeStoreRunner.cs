@@ -30,16 +30,16 @@ namespace TreeTest
                 switch (curTree.treeType)
                 {
                     case TreeType.World:
-                        RunWorldTree(curTree);
+                        RunWorldTree((WorldTree)curTree);
                         break;
                     case TreeType.Zone:
-                        RunZoneTree(curTree);
+                        RunZoneTree((ZoneTree)curTree);
                         break;
                     case TreeType.Dialog:
-                        RunDialogTree(curTree);
+                        RunDialogTree((DialogTree)curTree);
                         break;
                     case TreeType.Quest:
-                        RunQuestTree(curTree);
+                        RunQuestTree((QuestTree)curTree);
                         break;
                     default:
                         running = false;
@@ -57,9 +57,9 @@ namespace TreeTest
         }
  
 
-        private void RunWorldTree(Tree tree)
+        private void RunWorldTree(WorldTree tree)
         {
-            var currentNode = tree.getNode(tree.currentIndex);
+            var currentNode = (WorldTreeNode)tree.getNode(tree.currentIndex);
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
@@ -86,9 +86,9 @@ namespace TreeTest
             }
         }
 
-        private void RunDialogTree(Tree tree)
+        private void RunDialogTree(DialogTree tree)
         {
-            var currentNode = tree.getNode(tree.currentIndex);
+            var currentNode = (DialogTreeNode)tree.getNode(tree.currentIndex);
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
@@ -114,9 +114,9 @@ namespace TreeTest
             }
         }
 
-        private void RunZoneTree(Tree tree)
+        private void RunZoneTree(ZoneTree tree)
         {
-            var currentNode = tree.getNode(tree.currentIndex);
+            var currentNode = (ZoneTreeNode)tree.getNode(tree.currentIndex);
             Console.WriteLine(currentNode.name.ToString());
             var menuList = currentNode.getBranchListDisplay(tree);
 
@@ -142,7 +142,7 @@ namespace TreeTest
             }
         }
 
-        private void RunQuestTree(Tree tree)
+        private void RunQuestTree(QuestTree tree)
         {
 
         }

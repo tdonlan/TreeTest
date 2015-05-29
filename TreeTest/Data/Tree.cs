@@ -7,27 +7,28 @@ using System.Threading.Tasks;
 namespace TreeTest
 {
   
-
-    public class Tree
+    public class WorldTree : ITree
     {
         public string treeName { get; set; }
         public long treeIndex { get; set; }
         public long currentIndex { get; set; }
         public TreeType treeType { get; set; }
 
-        public virtual Dictionary<long, TreeNode> treeNodeDictionary { get; set; }
+        public ITreeNode tempTreeNode;
 
-        public GlobalFlags globalFlags;
+        public Dictionary<long, WorldTreeNode> treeNodeDictionary { get; set; }
 
-        public Tree(GlobalFlags globalFlags, TreeType treeType)
+        public GlobalFlags globalFlags { get; set; }
+
+        public WorldTree(GlobalFlags globalFlags, TreeType treeType)
         {
             currentIndex = 0;
-            treeNodeDictionary = new Dictionary<long, TreeNode>();
+            treeNodeDictionary = new Dictionary<long, WorldTreeNode>();
             this.globalFlags = globalFlags;
             this.treeType = treeType;
         }
 
-        public TreeNode getNode(long index)
+            public ITreeNode getNode(long index)
         {
             if(treeNodeDictionary.ContainsKey(index))
             {
@@ -43,7 +44,127 @@ namespace TreeTest
             treeNodeDictionary[currentIndex].SelectNode(this);
 
         }
+
+  
     }
+
+     public class ZoneTree : ITree
+    {
+        public string treeName { get; set; }
+        public long treeIndex { get; set; }
+        public long currentIndex { get; set; }
+        public TreeType treeType { get; set; }
+
+        public Dictionary<long, ZoneTreeNode> treeNodeDictionary { get; set; }
+
+        public GlobalFlags globalFlags { get; set; }
+
+        public ZoneTree(GlobalFlags globalFlags, TreeType treeType)
+        {
+            currentIndex = 0;
+            treeNodeDictionary = new Dictionary<long, ZoneTreeNode>();
+            this.globalFlags = globalFlags;
+            this.treeType = treeType;
+        }
+
+            public ITreeNode getNode(long index)
+        {
+            if(treeNodeDictionary.ContainsKey(index))
+            {
+                return treeNodeDictionary[index];
+            }
+            return null;
+        }
+
+        public void SelectNode(long index)
+        {
+            this.currentIndex = index;
+
+            treeNodeDictionary[currentIndex].SelectNode(this);
+
+        }
+
+      
+
+     }
+
+
+
+     public class DialogTree : ITree
+     {
+          public string treeName { get; set; }
+        public long treeIndex { get; set; }
+        public long currentIndex { get; set; }
+        public TreeType treeType { get; set; }
+
+        public Dictionary<long, DialogTreeNode> treeNodeDictionary { get; set; }
+
+        public GlobalFlags globalFlags {get;set;}
+
+        public DialogTree(GlobalFlags globalFlags, TreeType treeType)
+        {
+            currentIndex = 0;
+            treeNodeDictionary = new Dictionary<long, DialogTreeNode>();
+            this.globalFlags = globalFlags;
+            this.treeType = treeType;
+        }
+
+            public ITreeNode getNode(long index)
+        {
+            if(treeNodeDictionary.ContainsKey(index))
+            {
+                return treeNodeDictionary[index];
+            }
+            return null;
+        }
+
+        public void SelectNode(long index)
+        {
+            this.currentIndex = index;
+
+            treeNodeDictionary[currentIndex].SelectNode(this);
+
+        }
+
+     }
+
+     public class QuestTree : ITree
+     {
+         public string treeName { get; set; }
+         public long treeIndex { get; set; }
+         public long currentIndex { get; set; }
+         public TreeType treeType { get; set; }
+
+         public Dictionary<long, QuestTreeNode> treeNodeDictionary { get; set; }
+
+         public GlobalFlags globalFlags { get; set; }
+
+         public QuestTree(GlobalFlags globalFlags, TreeType treeType)
+         {
+             currentIndex = 0;
+             treeNodeDictionary = new Dictionary<long, QuestTreeNode>();
+             this.globalFlags = globalFlags;
+             this.treeType = treeType;
+         }
+
+         public ITreeNode getNode(long index)
+         {
+             if (treeNodeDictionary.ContainsKey(index))
+             {
+                 return treeNodeDictionary[index];
+             }
+             return null;
+         }
+
+         public void SelectNode(long index)
+         {
+             this.currentIndex = index;
+
+             treeNodeDictionary[currentIndex].SelectNode(this);
+
+         }
+     }
+
 
     public class TreeBranchCondition
     {

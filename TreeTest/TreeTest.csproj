@@ -49,18 +49,16 @@
     <Compile Include="DataLoader\TreeStoreLoader.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\GlobalFlags.cs" />
+    <Compile Include="Data\ITree.cs" />
     <Compile Include="Data\TreeNode.cs" />
-    <Compile Include="Parser\JSONHelper.cs" />
     <Compile Include="Parser\ParseHelper.cs" />
     <Compile Include="Parser\SimpleJSON.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parser\SimpleTreeParser.cs" />
-    <Compile Include="Factories\TreeFactory.cs" />
     <Compile Include="Data\Tree.cs" />
     <Compile Include="Runner\TreeRunner.cs" />
     <Compile Include="Data\TreeStore.cs" />
-    <Compile Include="Factories\TreeStoreFactory.cs" />
     <Compile Include="Runner\TreeStoreRunner.cs" />
   </ItemGroup>
   <ItemGroup>

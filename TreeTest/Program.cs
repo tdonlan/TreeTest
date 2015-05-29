@@ -106,7 +106,7 @@ namespace TreeTest
 
             }
 
-            Tree t = SimpleTreeParser.getTreeFromFile(inputFile, treeType, gf);
+            ITree t = SimpleTreeParser.getTreeFromFile(inputFile, treeType, gf);
 
             TreeStoreExporter.exportTree(t, outputFile);
 

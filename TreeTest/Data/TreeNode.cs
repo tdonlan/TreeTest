@@ -9,25 +9,16 @@ namespace TreeTest
 
     #region Node
 
-    public class TreeNode
+    public abstract class TreeNode
     {
         public long index { get; set; }
         public string name { get; set; }
-        
+
         public List<TreeBranch> branchList { get; set; }
 
         public List<TreeNodeFlagSet> flagSetList { get; set; }
 
-        public TreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList)
-        {
-            this.index = index;
-            this.name = name;
-
-            this.branchList = branchList;
-            this.flagSetList = flagSetList;
-        }
-
-        public void SelectNode(Tree t)
+        public void SelectNode(ITree t)
         {
             if (flagSetList != null)
             {
@@ -38,7 +29,7 @@ namespace TreeTest
             }
         }
 
-        public List<string> getBranchListDisplay(Tree t)
+        public List<string> getBranchListDisplay(ITree t)
         {
             List<string> strList = new List<string>();
             int count = 1;
@@ -77,19 +68,20 @@ namespace TreeTest
             }
             return -1;
         }
-
-       
-
     }
 
-    public class WorldTreeNode : TreeNode
+    public class WorldTreeNode : TreeNode, ITreeNode
     {
         public WorldNodeContent content { get; set; }
 
         public WorldTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, WorldNodeContent content)
-            : base (index,name,branchList,flagSetList)
         {
             this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
         }
 
         public override string ToString()
@@ -97,66 +89,72 @@ namespace TreeTest
             string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
             return retval;
         }
+
     }
 
-    public class ZoneTreeNode: TreeNode
+    public class ZoneTreeNode : TreeNode, ITreeNode
     {
         public ZoneNodeContent content { get; set; }
 
         public ZoneTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, ZoneNodeContent content)
-            : base (index,name,branchList,flagSetList)
         {
             this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
         }
 
         public override string ToString()
         {
             string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
 
-
             return retval;
 
         }
     }
 
-    public class DialogTreeNode : TreeNode
+    public class DialogTreeNode : TreeNode, ITreeNode
     {
         public DialogNodeContent content { get; set; }
 
         public DialogTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, DialogNodeContent content)
-            : base (index,name,branchList,flagSetList)
         {
             this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
         }
 
         public override string ToString()
         {
             string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
-
-
             return retval;
-
         }
 
     }
 
-    public class QuestTreeNode : TreeNode
+    public class QuestTreeNode : TreeNode, ITreeNode
     {
         public QuestNodeContent content { get; set; }
 
         public QuestTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, QuestNodeContent content)
-            : base (index,name,branchList,flagSetList)
         {
             this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
         }
 
         public override string ToString()
         {
             string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
-
-
             return retval;
-
         }
 
     }
@@ -166,25 +164,20 @@ namespace TreeTest
 
     #region NodeContent
 
-    public class TreeNodeContent
-    {
-
-    }
-
-    public class WorldNodeContent : TreeNodeContent
+    public class WorldNodeContent : ITreeNodeContent
     {
         public long linkIndex { get; set; }
         public string zoneName { get; set; }
     }
 
-    public class ZoneNodeContent : TreeNodeContent
+    public class ZoneNodeContent : ITreeNodeContent
     {
         public ZoneNodeType nodeType { get; set; }
         public string nodeName { get; set; }
         public long linkIndex { get; set; }
     }
 
-    public class DialogNodeContent : TreeNodeContent
+    public class DialogNodeContent : ITreeNodeContent
     {
         public string speaker { get; set; }
         public string text { get; set; }
@@ -192,7 +185,7 @@ namespace TreeTest
 
     }
 
-    public class QuestNodeContent : TreeNodeContent
+    public class QuestNodeContent : ITreeNodeContent
     {
         public string content { get; set; }
     }

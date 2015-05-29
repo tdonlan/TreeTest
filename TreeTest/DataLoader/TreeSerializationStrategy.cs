@@ -12,16 +12,7 @@ namespace TreeTest
     {
         public override object DeserializeObject(object value, Type type)
         {
-
-            if(type == typeof(TreeNodeContent))
-            {
-                int i = 0;
-            }
-
             return base.DeserializeObject(value, type);
         }
-
-      
-       
     }
 }
