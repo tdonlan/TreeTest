@@ -60,6 +60,7 @@
     <Compile Include="Runner\TreeRunner.cs" />
     <Compile Include="Data\TreeStore.cs" />
     <Compile Include="Runner\TreeStoreRunner.cs" />
+    <Compile Include="Validator\TreeStoreValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

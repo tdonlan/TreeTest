@@ -35,6 +35,10 @@ namespace TreeTest
                         if (args.Length > 3) { convertFile(args[1], args[2], args[3]); }
                         else { Console.WriteLine("Missing arguments <type> <inputfile> <outputfile>."); }
                         break;
+                    case "-V":
+                        if (args.Length > 1) { validateTreeStore(args[1]); }
+                        else { Console.WriteLine("Missing arguments <manifest>."); }
+                        break;
                     default:
                         Console.WriteLine("Invalid command specified.");
                         break;
@@ -53,6 +57,7 @@ namespace TreeTest
             outStr += "-r: Run.   <manifest file>.\n";
             outStr += "-c: Convert from Simple to JSON format. <input directory> <output directory>.\n ";
             outStr += "-cf: Convert File from Simple to JSON format. <type> <input directory> <output director>.\n";
+            outStr += "-v: Validate tree store.  <manifest file>.\n";
             Console.Write(outStr);
         }
 
@@ -110,6 +115,17 @@ namespace TreeTest
 
             TreeStoreExporter.exportTree(t, outputFile);
 
+        }
+
+        public static void validateTreeStore(string manifest)
+        {
+             Console.WriteLine("Validating " + manifest);
+             GlobalFlags gf = new GlobalFlags();
+            TreeStore ts = TreeStoreLoader.loadTreeStoreFromManifest(manifest);
+
+            bool validateResult = TreeStoreValidator.validateTreeStore(ts);
+
+            Console.WriteLine("Validated: " + validateResult);
         }
 
     }

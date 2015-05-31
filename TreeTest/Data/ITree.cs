@@ -14,6 +14,8 @@ namespace TreeTest
 
         ITreeNode getNode(long index);
         void SelectNode(long index);
+        bool checkNode(long index);
+        bool validateTreeLinks();
     }
 
     public interface ITreeNode

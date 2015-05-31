@@ -45,6 +45,32 @@ namespace TreeTest
 
         }
 
+        public bool checkNode(long index)
+        {
+            return treeNodeDictionary.ContainsKey(index);
+        }
+
+        public bool validateTreeLinks()
+        {
+            bool validLinks = true;
+            foreach (TreeNode node in treeNodeDictionary.Values)
+            {
+                foreach (var branch in node.branchList)
+                {
+                    Console.Write(string.Format("Checking {0} for link {1} ...",branch.description, branch.linkIndex));
+                    if (!checkNode(branch.linkIndex))
+                    {
+                        validLinks = false;
+                         Console.Write(" MISSING.\n");
+                    }
+                    else{
+                        Console.Write(" found.\n");
+                    }
+                }
+            }
+            return validLinks;
+        }
+
   
     }
 
@@ -82,6 +108,33 @@ namespace TreeTest
 
             treeNodeDictionary[currentIndex].SelectNode(this);
 
+        }
+
+        public bool checkNode(long index)
+        {
+            return treeNodeDictionary.ContainsKey(index);
+        }
+
+        public bool validateTreeLinks()
+        {
+            bool validLinks = true;
+            foreach (TreeNode node in treeNodeDictionary.Values)
+            {
+                foreach (var branch in node.branchList)
+                {
+                    Console.Write(string.Format("Checking {0} for link {1} ...", branch.description, branch.linkIndex));
+                    if (!checkNode(branch.linkIndex))
+                    {
+                        validLinks = false;
+                        Console.Write(" MISSING.\n");
+                    }
+                    else
+                    {
+                        Console.Write(" found.\n");
+                    }
+                }
+            }
+            return validLinks;
         }
 
       
@@ -126,6 +179,33 @@ namespace TreeTest
 
         }
 
+        public bool checkNode(long index)
+        {
+            return treeNodeDictionary.ContainsKey(index);
+        }
+
+        public bool validateTreeLinks()
+        {
+            bool validLinks = true;
+            foreach (TreeNode node in treeNodeDictionary.Values)
+            {
+                foreach (var branch in node.branchList)
+                {
+                    Console.Write(string.Format("Checking {0} for link {1} ...", branch.description, branch.linkIndex));
+                    if (!checkNode(branch.linkIndex))
+                    {
+                        validLinks = false;
+                        Console.Write(" MISSING.\n");
+                    }
+                    else
+                    {
+                        Console.Write(" found.\n");
+                    }
+                }
+            }
+            return validLinks;
+        }
+
      }
 
      public class QuestTree : ITree
@@ -162,6 +242,33 @@ namespace TreeTest
 
              treeNodeDictionary[currentIndex].SelectNode(this);
 
+         }
+
+         public bool checkNode(long index)
+         {
+             return treeNodeDictionary.ContainsKey(index);
+         }
+
+         public bool validateTreeLinks()
+         {
+             bool validLinks = true;
+             foreach (TreeNode node in treeNodeDictionary.Values)
+             {
+                 foreach (var branch in node.branchList)
+                 {
+                     Console.Write(string.Format("Checking {0} for link {1} ...", branch.description, branch.linkIndex));
+                     if (!checkNode(branch.linkIndex))
+                     {
+                         validLinks = false;
+                         Console.Write(" MISSING.\n");
+                     }
+                     else
+                     {
+                         Console.Write(" found.\n");
+                     }
+                 }
+             }
+             return validLinks;
          }
      }
 
@@ -211,7 +318,5 @@ namespace TreeTest
             return string.Format("{0}({1})", description, linkIndex);
         }
     }
-
-   
 
 }
