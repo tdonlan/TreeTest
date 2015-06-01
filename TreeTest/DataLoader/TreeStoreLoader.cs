@@ -15,7 +15,9 @@ namespace TreeTest
         public static TreeStore loadTreeStoreFromManifest(string manifestPath)
         {
             string manifestStr = File.ReadAllText(manifestPath);
-            var manifestJSON = JsonConvert.DeserializeObject<List<TreeManifestItem>>(manifestStr);
+
+          
+            List<TreeManifestItem> manifestJSON = (List<TreeManifestItem>)JSONHelper.import(manifestStr, typeof(List<TreeManifestItem>));
 
             GlobalFlags globaFlags = new GlobalFlags();
 
@@ -23,7 +25,6 @@ namespace TreeTest
 
             foreach (var treeItem in manifestJSON)
             {
-                
                 ITree tempTree = loadTreeFromPath(treeItem.treeType, treeItem.treePath);
                 treeStore.treeDictionary.Add(treeItem.treeIndex, tempTree);
             }
@@ -38,17 +39,20 @@ namespace TreeTest
             switch (treeType)
             {
                 case TreeType.World:
-                    //var treeJSON = SimpleJson.SimpleJson.DeserializeObject<Tree>(treeStr, new TreeSerializationStrategy());
-                    return JsonConvert.DeserializeObject<WorldTree>(treeStr);
+                    return (WorldTree)JSONHelper.import(treeStr, typeof(WorldTree));
+
 
                 case TreeType.Zone:
-                    return JsonConvert.DeserializeObject<ZoneTree>(treeStr);
+                    return (ZoneTree)JSONHelper.import(treeStr, typeof(ZoneTree));
+
 
                 case TreeType.Dialog:
-                    return JsonConvert.DeserializeObject<DialogTree>(treeStr);
+                    return (DialogTree)JSONHelper.import(treeStr, typeof(DialogTree));
+
 
                 case TreeType.Quest:
-                    return JsonConvert.DeserializeObject<QuestTree>(treeStr);
+                    return (QuestTree)JSONHelper.import(treeStr, typeof(QuestTree));
+
 
                 default: return null;
             }

@@ -51,6 +51,8 @@
     <Compile Include="Data\GlobalFlags.cs" />
     <Compile Include="Data\ITree.cs" />
     <Compile Include="Data\TreeNode.cs" />
+    <Compile Include="Parser\EnumSupportedStrategy.cs" />
+    <Compile Include="Parser\JSONHelper.cs" />
     <Compile Include="Parser\ParseHelper.cs" />
     <Compile Include="Parser\SimpleJSON.cs" />
     <Compile Include="Program.cs" />

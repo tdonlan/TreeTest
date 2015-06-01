@@ -12,7 +12,8 @@ namespace TreeTest
     class Program
     {
         static void Main(string[] args)
-        {          
+        {
+
             if(args.Length > 0)
             {
                 switch (args[0].ToUpper())
@@ -126,6 +127,37 @@ namespace TreeTest
             bool validateResult = TreeStoreValidator.validateTreeStore(ts);
 
             Console.WriteLine("Validated: " + validateResult);
+        }
+
+        public static void testSimpleJSON()
+        {
+            TreeManifestItem ti = new TreeManifestItem();
+            ti.treeIndex = 1;
+            ti.treeName = null;
+            ti.treePath = "/test/test.json";
+            ti.treeType = TreeType.World;
+
+            List<TreeManifestItem> treeManifestList = new List<TreeManifestItem>();
+            treeManifestList.Add(ti);
+            treeManifestList.Add(ti);
+
+
+          
+            string tiJSON2 = File.ReadAllText(@"C:\Users\tdonlan\Documents\Personal\Dev\TreeTest\TreeTest\TestData\JSONWorld3\manifest.json");
+
+            List<TreeManifestItem> treeManifestList2 = (List<TreeManifestItem>)JSONHelper.import(tiJSON2, typeof(List<TreeManifestItem>));
+         
+
+        }
+
+        public static void testSimpleJSON2()
+        {
+            WorldTree world1 = (WorldTree)SimpleTreeParser.getTreeFromFile(@"C:\Users\tdonlan\Documents\Personal\Dev\TreeTest\TreeTest\TestData\SimpleWorld1\World1.txt", TreeType.World, new GlobalFlags());
+
+            string worldJSON = JSONHelper.export(world1);
+
+            WorldTree world2 = (WorldTree)JSONHelper.import(worldJSON, typeof(WorldTree));
+
         }
 
     }

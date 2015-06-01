@@ -21,9 +21,8 @@ namespace TreeTest
             {
                 var tree = ts.treeDictionary[key];
                 string exportPath = getTreeExportPath(key, tree, path);
-                
-                string treeJSON = JsonConvert.SerializeObject(tree);
-                //string treeJSON = SimpleJson.SimpleJson.SerializeObject(tree, new TreeSerializationStrategy());
+
+                string treeJSON = JSONHelper.export(tree);
 
                 File.WriteAllText(exportPath, treeJSON, Encoding.Default);
 
@@ -31,13 +30,13 @@ namespace TreeTest
             }
 
             string manifestPath = path + "/manifest.json";
-            File.WriteAllText(manifestPath, JsonConvert.SerializeObject(treeManifestList));
- 
+
+            File.WriteAllText(manifestPath, JSONHelper.export(treeManifestList));
         }
 
         public static void exportTree(ITree t, string path)
         {
-            string treeJSON = SimpleJson.SimpleJson.SerializeObject(t);
+            string treeJSON = JSONHelper.export(t);
             File.WriteAllText(path, treeJSON);
         }
 
